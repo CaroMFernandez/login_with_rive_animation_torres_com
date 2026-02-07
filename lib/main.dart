@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login_with_riveanimation_class3/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple), //Aldebaran Galaviz
+        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const LoginScreen(),
     );
