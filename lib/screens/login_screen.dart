@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             Expanded(child: 
-            RiveAnimation.asset('assets/animated_login_bear.riv'))
+            RiveAnimation.asset('assets/3645-7621-remix-of-login-machine.riv'))
           ]
         )
       )
