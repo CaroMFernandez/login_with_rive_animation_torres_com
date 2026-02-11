@@ -9,18 +9,66 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  //Controlar para mostra o ocultar la contraseña
+  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
+    //Para obtener el tamaño de la memoria 
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      // Evita que se quite espacio del nudge
+      //Evitar que se quite el esapacio del nudge
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(child: 
-            RiveAnimation.asset('assets/3645-7621-remix-of-login-machine.riv'))
-          ]
-        )
-      )
+        child:Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+              SizedBox(
+                width: size.width,
+                height: 200,
+                child: const RiveAnimation.asset('assets/3645-7621-remix-of-login-machine.riv'),
+              ),
+              const SizedBox(height: 18),
+              TextField(
+                //Para un tipo de yeclafo
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  prefixIcon: const Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12)  
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10,),
+              TextField(
+                obscureText: _obscureText,
+                decoration: InputDecoration(
+                  hintText: 'Password' ,
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off
+                      ),
+                      onPressed: () {
+                        //Refrescar el Icono
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10,),
+              TextField(
+              )
+            ],
+          ),
+        ))
+
     );
   }
 }
