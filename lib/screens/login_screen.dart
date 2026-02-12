@@ -2,73 +2,122 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
+  const LoginScreen({super.key}); ///c0nstructor para crear una instancia de LoginScreen
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //Controlar para mostra o ocultar la contraseña
-  bool _obscureText = true;
+
+  bool _obscureText = true; // Variable para controlar la visibilidad de la contraseña
+ //CREAR EL CEREBRO 
+  StateMachineController? _controller;
+  
+  //SMIT : STATE MACHINE INPUT
+  SMIBool? _isChecking;
+  SMIBool? _isHandsUp;
+  SMITrigger? _trigSuccess;
+  SMITrigger? _trigfail;
+
   @override
   Widget build(BuildContext context) {
-    //Para obtener el tamaño de la memoria 
-    final Size size = MediaQuery.of(context).size;
-
+    final Size size = MediaQuery .of(context).size;
+    //para obtener el tamaño de la pantalla 
     return Scaffold(
-      //Evitar que se quite el esapacio del nudge
+      // Evita que se quite espacio del nudge
       body: SafeArea(
-        child:Padding(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
               SizedBox(
                 width: size.width,
-                height: 200,
-                child: const RiveAnimation.asset('assets/3645-7621-remix-of-login-machine.riv'),
+                height: 200, // Ajustar el tamaño del RiveAnimation
+                child: RiveAnimation.asset('3645-7621-remix-of-login-machine.riv', stateMachines: ['Login Machine'],
+                //Iniciar animacion
+                onInit: (artboard){
+
+                  _controller = StateMachineController.fromArtboard(
+                    artboard, 
+                    'Login Machine',);
+
+                    //verifica que inicio bien
+                    if (_controller == null) return;
+                    //agrega el controlador al tablero/escenario
+                    artboard.addController(_controller!);
+                    //vincular variables 
+                    _isChecking = _controller!.findSMI('isChecking');
+                    _isHandsUp = _controller!.findSMI('isHandsUp');
+                    _trigSuccess = _controller!.findSMI('istrigSuccess');
+                    _trigfail = _controller!.findSMI('trigfail'); 
+
+                }
+
+                
+                ),
               ),
-              const SizedBox(height: 18),
+              //para separacion 
+              const SizedBox(height: 10),
+              //campo de texto email
               TextField(
-                //Para un tipo de yeclafo
+                onChanged: (value) {
+                  if(_isHandsUp != null){
+                    //No tapes los ojos al ver email
+                    _isHandsUp!.change(false);
+                  }
+                  //si ischecking no es nulo
+                  if(_isChecking == null) return;
+                  //activar el modo chismoso
+                  _isChecking!.change(true);
+                },
+                //un tipo de teclado para email
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12)  
+                    //para redondear los bordes 
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 10),
               TextField(
+                onChanged: (value) {
+                  if (_isChecking != null) {
+                    //No quiero modo chismoso
+                    _isChecking!.change(false);
+                  }
+                  //Si isHandsUp es nulo
+                  if (_isHandsUp == null) return;
+                  //levanta las manos
+                  _isHandsUp!.change(true);
+                },
                 obscureText: _obscureText,
                 decoration: InputDecoration(
-                  hintText: 'Password' ,
+                  hintText: 'Password',
                   prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off
-                      ),
-                      onPressed: () {
-                        //Refrescar el Icono
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
+                  suffix: IconButton(
+                    icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),
-              const SizedBox(height: 10,),
-              TextField(
-              )
-            ],
+              const SizedBox(height: 10),
+              
+                
+                
+            ]
           ),
-        ))
-
+        )
+      )
     );
   }
 }
