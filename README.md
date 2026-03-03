@@ -1,35 +1,49 @@
 # 🐻 Animated Login Screen with Rive & Flutter
 
+<p align="center">
+  <img src="assets/demo.gif" width="450"/>
+</p>
+
+---
+
 ## 📚 Course Information
 - **Subject:** Graficación  
 - **Professor:** Rodrigo Fidel Gaxiola Sosa  
 - **Group:** 5SA  
+- **Year:** 2026  
 
 ---
 
-## 🚀 Project Overview
+## 🚀 Project Description
 
-This project is an interactive login screen built with **Flutter** and enhanced using **Rive animation**.  
-It features a responsive animated character that reacts to user interactions such as typing email, focusing password, and showing success/failure feedback.
+This project is an interactive login screen developed using Flutter and enhanced with a Rive animated character.
+
+Instead of using static UI components, this application integrates a vector-based animation controlled by a State Machine. The character reacts dynamically to user interactions such as focusing input fields, typing text, and triggering login validation.
+
+The goal of this project is to demonstrate how modern UI animation can be connected to real-time logic using Flutter and Rive.
 
 ---
 
 ## ✨ Main Features
 
-- 📧 Elegant email and password input fields  
-- 👀 Bear follows email text while typing  
-- 🙈 Bear covers eyes when password is focused  
-- 🔐 Toggle password visibility  
-- 🎯 Success and fail animations triggered via state  
-- 🔄 Smooth interaction using Rive State Machine  
-- 🧠 Proper resource cleanup using `dispose()`
+- 📧 Email input field
+- 🔐 Password input field with visibility toggle
+- 👀 Bear follows the email text while typing
+- 🙈 Bear covers its eyes when password field is focused
+- 🎯 Success animation trigger
+- ❌ Fail animation trigger
+- 🔄 Real-time animation updates using FocusNodes
+- 🧠 Proper lifecycle management with `dispose()` to prevent memory leaks
 
 ---
 
 ## 🎨 What is Rive?
 
-**Rive** is a real-time animation tool that lets designers and developers create vector animations that can respond to logic and input.  
-Instead of using static GIFs or videos, Rive animations run dynamically and react to user actions in real time.
+Rive is a real-time interactive animation platform that allows designers and developers to create vector animations with built-in logic.
+
+Unlike traditional GIFs or videos, Rive animations can respond dynamically to user input through programmable parameters called State Machine Inputs (SMI).
+
+Rive enables high-performance animations that run directly inside Flutter applications.
 
 Learn more: https://rive.app/
 
@@ -37,34 +51,37 @@ Learn more: https://rive.app/
 
 ## 🔁 What is a State Machine?
 
-A **State Machine** is a system that defines:
+A State Machine is a logic system that defines:
 
 - Different animation states (Idle, Checking, Hands Up, Success, Fail)
-- Transitions between states
-- Rules and triggers for those transitions
+- Transitions between those states
+- Conditions that trigger each transition
 
-In this project, the Rive State Machine controls the bear animation through inputs such as:
+In this project, the State Machine works as the “brain” of the bear animation.
 
-- `isChecking`  
-- `isHandsUp`  
-- `trigSuccess`  
+Flutter communicates with the animation using SMI inputs such as:
+
+- `isChecking`
+- `isHandsUp`
+- `trigSuccess`
 - `trigFail`
 
-These inputs allow Flutter to communicate with the animation logic in Rive.
+These inputs allow the animation to react to user focus and typing events in real time.
 
 ---
 
-## 🛠 Technologies
+## 🛠 Technologies Used
 
-- 💙 Flutter  
-- 🎯 Dart  
-- 🖥 Visual Studio Code  
-- 🧠 Rive Animation  
-- 📁 Git & GitHub  
+- 💙 Flutter
+- 🎯 Dart
+- 🎨 Rive (State Machine)
+- 🖥 Visual Studio Code
+- 📁 Git & GitHub
+- 📱 Android Emulator
 
 ---
 
-## 📂 Project Structure
+## 📂 Basic Project Structure
 
 ```
 lib/
@@ -76,39 +93,54 @@ assets/
 pubspec.yaml
 ```
 
-### 📌 Key Files
+---
 
-- **main.dart** – App entry point  
-- **login_screen.dart** – UI + animation handling  
-- **pubspec.yaml** – Flutter package & assets  
-- **assets/** – Rive animation file
+## 📌 Main Files Explanation
+
+- **main.dart** → Application entry point  
+- **login_screen.dart** → UI layout, animation logic, FocusNodes, StateMachineController  
+- **assets/** → Contains the `.riv` animation file  
+- **pubspec.yaml** → Manages dependencies and registers assets  
+
+---
+
+## 🧠 Animation Logic Implementation
+
+- Implemented using `StatefulWidget`
+- Connected to Rive State Machine ("Login Machine")
+- Used `StateMachineController` for animation control
+- Implemented `FocusNode` listeners inside `initState()`
+- Connected focus events to SMI inputs
+- Released resources properly using `dispose()` to avoid memory leaks
 
 ---
 
 ## 🎥 Demo
 
-Below is a preview of how the login interaction works:
+The animation reacts dynamically to:
 
-![Demo GIF](demo.gif)
+- Email typing
+- Password focus
+- Login result triggers
 
-*(Replace `demo.gif` with your actual animated file in the repository)*
+(Replace `assets/demo.gif` with your actual GIF file.)
 
 ---
 
 ## 🙌 Animation Credits
 
-Animation used from Rive Marketplace:
+Animation obtained from Rive Marketplace:
 
-💫 **Remix of Login Machine**  
-🔗 https://rive.app/marketplace/3645-7621-remix-of-login-machine/
+**Remix of Login Machine**  
+https://rive.app/marketplace/3645-7621-remix-of-login-machine/
 
-All animation credit goes to the original creator on Rive Marketplace.
+All rights and credit belong to the original creator on Rive Marketplace.
 
 ---
 
 ## 📦 Installation
 
-1. Clone the repository  
+1. Clone the repository
 2. Run:
 
 ```
@@ -116,26 +148,27 @@ flutter pub get
 flutter run
 ```
 
-Make sure Flutter SDK is installed and configured.
+Make sure Flutter SDK and Android Studio are properly configured.
 
 ---
 
-## 💡 Learning Outcomes
+## 🎯 Learning Outcomes
 
 This project demonstrates:
 
-- Building Flutter interfaces  
-- Integrating Rive with State Machine logic  
-- Managing user interaction  
-- Proper widget lifecycle handling  
-- Professional README documentation
+- Flutter UI development
+- Integration of vector animations with State Machines
+- Event-driven animation control
+- Focus management using FocusNodes
+- Lifecycle management in Flutter
+- Professional documentation using README
 
 ---
 
 ## 👨‍💻 Author
 
-Created as part of the **Graficación** course – 2026.
+Developed individually for the **Graficación** course – 2026.
 
 ---
 
-⭐ Thank you for reviewing this project! Feel free to explore and improve it!
+⭐ Thank you for reviewing this project!
