@@ -7,6 +7,7 @@
 ---
 
 ## 📚 Course Information
+- **Student:** Carolina Maribel Fernandez Uicab
 - **Subject:** Graficación  
 - **Professor:** Rodrigo Fidel Gaxiola Sosa  
 - **Group:** 5SA  
