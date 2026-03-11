@@ -1,27 +1,16 @@
-# 🔐 Login Screen con Animación Rive en Flutter
+# login_with_rive_animation_torres_com
 
-Este proyecto muestra una pantalla de inicio de sesión en **Flutter** integrada con una animación interactiva creada en **Rive**.  
-La animación reacciona dinámicamente cuando el usuario interactúa con los campos de email y contraseña.
+A new Flutter project.
 
----
+## Getting Started
 
-## 📌 Características
+This project is a starting point for a Flutter application.
 
-- 🎨 Animación interactiva con Rive
-- 👀 El personaje mira al campo de email cuando está en foco
-- 🙈 El personaje se cubre los ojos al escribir la contraseña
-- 👁️ Botón para mostrar/ocultar contraseña
-- ✅ Trigger de éxito al presionar el botón "Iniciar Sesión"
-- 🧹 Manejo correcto de memoria con `dispose()`
+A few resources to get you started if this is your first Flutter project:
 
----
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-## 📦 Dependencias
-
-Agrega las siguientes dependencias en tu archivo `pubspec.yaml`:
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  rive: ^0.12.0 # o la versión más reciente
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
