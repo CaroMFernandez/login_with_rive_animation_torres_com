@@ -223,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ),
               ),
-               const SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               MaterialButton(
                 minWidth: size.width,
                 height: 50,
